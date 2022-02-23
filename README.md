@@ -1,24 +1,40 @@
-# README
+# <お手軽感情日記（仮）>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+一日の感情をお手軽に記録する、日記アプリ。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+感情の記録、日記。
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+日記をつけたいけれど続かない、という私自身の経験や周りの意見をもとに、手軽に一日の振り返りができるようなアプリを目指しました。
+日記というと、続けることがプレッシャーになってしまう時もあると思います。
+そこで、ただワンタップするだけで感情を記録することができるようにしました。
+もちろん、感情だけでなく起きた出来事を日記として残すことも可能です。
 
-* Database initialization
+どんな日でも、誰でも簡単に振り返りができたらと思い、このテーマにしました。
 
-* How to run the test suite
+### ターゲットユーザ
 
-* Services (job queues, cache servers, search engines, etc.)
+お手軽に一日の振り返りをしたい人、日記をつけたい人。
 
-* Deployment instructions
+### 主な利用シーン
 
-* ...
+一日の最後でも、なにか嬉しいことがあったその時でも、いつでもご利用いただけます。
+
+## 設計書
+
+## チャレンジ要素一覧
+
+https://docs.google.com/spreadsheets/d/1O00bMMq4cHB2gZvhfzPInR5y1ykGSj4NJgJfJwj9blo/edit#gid=0
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
