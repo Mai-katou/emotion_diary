@@ -1,0 +1,2 @@
+class ImageEmotion < ApplicationRecord
+end
