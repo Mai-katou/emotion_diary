@@ -1,2 +1,14 @@
-<h1>Public::Diaries#new</h1>
-<p>Find me in app/views/public/diaries/new.html.erb</p>
+<h1>今日の日記</h1>
+<%= form_with model: @diary, url: diaries_path, method: :post, local:true do |f| %>
+    <%= f.text_area :diary_detail %><br>
+
+    <%= f.file_field :image, accept: "image/*", multiple: true %><br>
+
+    <%= f.radio_button :is_favorited, "true" %>
+    <%= f.label :is_favorited, "お気に入りに登録する" %><br>
+    <%= f.radio_button :is_favorited, "false" %>
+    <%= f.label :is_favorited, "お気に入りに登録しない" %><br>
+
+    <%= f.submit "保存する" %>
+<% end %>
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Portfolio</title>
+    <title>EmotionDiary</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,32 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <li>
+        <%= link_to "今日の記録", new_diary_path %>
+        </li>
+        <li>
+        <%= link_to "カレンダー", diaries_path %>
+        </li>
+        <li>
+        <%= link_to "お気に入り", diaries_path %>
+        </li>
+        <li>
+        <%= link_to "使い方", about_path %>
+        </li>
+        <li>
+        <%= link_to "マイページ", user_path(current_user.id) %>
+        </li>
+        <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% end %>
+    </header>
+
+    <main>
     <%= yield %>
+    </main>
+
   </body>
 </html>

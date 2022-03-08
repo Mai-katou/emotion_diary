@@ -1,2 +1,13 @@
-<h1>Public::Diaries#index</h1>
-<p>Find me in app/views/public/diaries/index.html.erb</p>
+<h1>カレンダー</h1>
+<div class = 'calendar'>
+
+  <%= month_calendar events: @diaries do |date, diary| %>
+    <%= date %>
+
+    <% diary.each do |diary| %>
+      <div>
+        <%= diary.diary_detail %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

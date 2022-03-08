@@ -1,2 +1,6 @@
-<h1>Public::Diaries#show</h1>
-<p>Find me in app/views/public/diaries/show.html.erb</p>
+<h1>日記詳細</h1>
+<%= @diary.diary_detail %>
+
+<% @diary.image.each do |image| %>
+<%= image_tag image, size: "100x100" %>
+<% end %>
