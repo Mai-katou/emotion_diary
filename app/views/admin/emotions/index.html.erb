@@ -1,0 +1,7 @@
+<h1>感情一覧</h1>
+<%= link_to "感情追加" , new_admin_emotion_path %>
+<% @emotions.each do |emotion| %>
+<%= emotion.emotion_name %>
+<%= link_to "編集する", edit_admin_emotion_path(emotion.id) %>
+<%= link_to "削除する", admin_emotion_path(emotion.id) , method: :delete%>
+<% end %>

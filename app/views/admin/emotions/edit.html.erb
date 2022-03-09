@@ -1,0 +1,5 @@
+<h1>感情編集画面</h1>
+<%= form_with model: @emotion, url: admin_emotion_path(@emotion.id), method: :patch, local:true do |f| %>
+<%= f.text_field :emotion_name %>
+<%= f.submit "更新する" %>
+<% end %>

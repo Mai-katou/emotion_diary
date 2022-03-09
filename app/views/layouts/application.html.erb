@@ -32,6 +32,14 @@
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
       <% end %>
+        <% if admin_signed_in? %>
+            <li>
+            <%= link_to "感情操作", admin_emotions_path %>
+            </li>
+            <li>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            </li>
+        <% end %>
     </header>
 
     <main>

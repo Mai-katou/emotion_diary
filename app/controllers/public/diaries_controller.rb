@@ -10,7 +10,7 @@ class Public::DiariesController < ApplicationController
   def create
     @diary = Diary.new(diary_params)
     require 'date'
-    @diary.start_time = DateTime.now
+    @diary.start_time = DateTime.current
     @diary.user_id = current_user.id
     @diary.save
     redirect_to diary_path(@diary.id)

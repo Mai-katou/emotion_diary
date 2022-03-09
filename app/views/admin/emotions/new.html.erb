@@ -1,0 +1,5 @@
+<h1>感情新規登録</h1>
+<%= form_with model: @emotion, url: admin_emotions_path, method: :post, local:true do |f| %>
+<%= f.text_field :emotion_name %>
+<%= f.submit "感情登録" %>
+<% end %>
