@@ -11,3 +11,8 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// ここから追加
+require("jquery")
+require("@nathanvda/cocoon")
+// こまで追加

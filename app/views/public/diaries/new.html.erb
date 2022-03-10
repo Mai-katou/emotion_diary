@@ -1,5 +1,59 @@
 <h1>今日の日記</h1>
 <%= form_with model: @diary, url: diaries_path, method: :post, local:true do |f| %>
+
+<%#= form_with model: @diary_emotion, method: :post, local:true do |f| %>
+    <%#= f.label :emotion %>
+    <%# @emotions.each do |emotion| %>
+    <%#= f.check_box :emotion.id ,{multiple: true}, emotion, nil %>
+    <%#= emotion %>
+    <%# end %>
+<%# end %>
+
+    <div>
+        <%# @emotions.each do |emotion| %>
+            <%#= f.check_box :emotion_id, {}, emotion.id %>
+            <%#= f.label emotion %>
+        <%# end %>
+        <%#= f.collection_check_boxes(:image_emotions, :emotion_id, @emotions, :id, :emotion_name) %>
+        <%#= f.fields_for :image_emotions do |fc|%>
+            <%#= fc.collection_check_boxes(:emotion_id, @emotions, :id, :emotion_name) %>
+            <%#= fc.text_field :emotion_id %>
+            <%# @emotions.each do |emotion| %>
+                <%#= fc.check_box :emotion_id %>
+                <%#= emotion %>
+            <%# end %>
+        <%# end %>
+        <%= link_to_add_association 'Add Emotion',
+                                      # form_withのformタグ変数
+                                      f,
+                                      # フォームのデータを追加するモデル名
+                                      :image_emotions,
+                                      # 追加するフォームの部分テンプレート
+                                      partial: "emotion",
+                                      # オプション
+                                      data: {
+                                        # フォームを追加する場所の指定
+                                        association_insertion_node: '#image-emotion-forms',
+                                        # フォームを前後どの位置に追加するか。(初期値: before)
+                                        association_insertion_method: 'after'
+                                      },
+                                      # フォームオブジェクトを指定する場合(初期値 : f)
+                                      form_name: 'image_emotion',
+                                      # 部分テンプレートに渡す変数があれば記述
+                                      render_options: {
+                                        locals: {
+                                          emotions: @emotions
+                                        }
+                                      }
+          %>
+    </div>
+
+    <div id="image-emotion-forms">
+        <%= f.fields_for :image_emotions do |image_emotion| %>
+          <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
+        <% end %>
+    </div>
+
     <%= f.text_area :diary_detail %><br>
 
     <%= f.file_field :image, accept: "image/*", multiple: true %><br>
