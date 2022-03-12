@@ -14,6 +14,7 @@ scope module: :public do
     get "/about" => "homes#about"
 
     resources :users, only: [:show, :edit, :update]
+    get "/diaries/calendar_detail/:year/:month/:day" => "diaries#calendar_detail" ,as: 'calendar_detail'
     resources :diaries, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 

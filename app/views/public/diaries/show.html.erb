@@ -1,9 +1,23 @@
-<h1>日記詳細</h1>
-<%= @diary.diary_detail %>
-<% @diary.image_emotions.each do |emotion| %>
-  <%= emotion.emotion.emotion_name %>
-<% end %>
+<h1><%= @diary.start_time.strftime('%Y/%m/%d') %>の日記</h1>
 
-<% @diary.image.each do |image| %>
-<%= image_tag image, size: "100x100" %>
+<p>感情</p>
+    <% @diary.image_emotions.each do |emotion| %>
+      <%= emotion.emotion.emotion_name %>
+    <% end %>
+
+<p>日記</p>
+    <%= @diary.diary_detail %>
+
+<p>画像</p>
+    <% @diary.images.each do |image| %>
+        <%= image_tag image, size: "100x100" %>
+    <% end %>
+
+    <%= link_to '編集', edit_diary_path(@diary.id) %>
+    <%= link_to '削除', diary_path(@diary.id), method: :delete %>
+
+<p>----------------------------------------------</p>
+
+<% @diaries.each do |diary| %>
+<%= link_to "この日の他の日記", diary_path(diary.id) %><br>
 <% end %>

@@ -14,6 +14,9 @@
     <header>
       <% if user_signed_in? %>
         <li>
+        <p>ようこそ<%= current_user.name %>さん</p>
+        </li>
+        <li>
         <%= link_to "今日の記録", new_diary_path %>
         </li>
         <li>

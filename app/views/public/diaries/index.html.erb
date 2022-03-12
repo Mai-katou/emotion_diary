@@ -1,13 +1,19 @@
 <h1>カレンダー</h1>
 <div class = 'calendar'>
 
-  <%= month_calendar events: @diaries do |date, diary| %>
-    <%= date %>
+  <%= month_calendar events: @diaries do |date, diaries| %>
+   　<%= date.day %>
+   　 <div>
+   　<%# diaries.each do |diary| %>
+    <%#= diary.diary_detail %>
 
-    <% diary.each do |diary| %>
-      <div>
-        <%= diary.diary_detail %>
-      </div>
-    <% end %>
+    <%#= link_to "この日の記録", diary_path(diary.id) %>
+
+    <%# end %>
+    <%#calendar_detail_path(date.year,date.month,date.day)
+    /calendar_detail/:year/:month/:day %>
+    <%= link_to "#{diaries.size}件の日記", calendar_detail_path(date.year,date.month,date.day) %>
+    </div>
   <% end %>
+
 </div>

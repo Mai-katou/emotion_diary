@@ -1,12 +1,6 @@
 <div class="nested-fields">
   <div class="field">
-    <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
-    <%#= album_track.label :title, 'トラック名' %>
-    <%#= album_track.text_field :title %>
-  </div>
-  <div class="field">
     <%= image_emotion.select :emotion_id, emotions.map { |emotion| [emotion.emotion_name, emotion.id] } %>
-    <%= link_to_remove_association "Remove Emotion", image_emotion %>
+    <%= link_to_remove_association "削除", image_emotion %>
   </div>
-  <hr>
 </div>
