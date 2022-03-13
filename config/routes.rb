@@ -15,6 +15,7 @@ scope module: :public do
 
     resources :users, only: [:show, :edit, :update]
     get "/diaries/calendar_detail/:year/:month/:day" => "diaries#calendar_detail" ,as: 'calendar_detail'
+    get "/diary/favorited_diary" => "diaries#favorited_diary" ,as: 'favorited_diary'
     resources :diaries, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 
