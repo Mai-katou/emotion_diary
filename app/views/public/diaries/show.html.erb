@@ -13,8 +13,8 @@
         <%= image_tag image, size: "100x100" %>
     <% end %>
 
-    <%= link_to '編集', edit_diary_path(@diary.id) %>
-    <%= link_to '削除', diary_path(@diary.id), method: :delete %>
+    <%= link_to '日記を編集', edit_diary_path(@diary.id) %>
+    <%= link_to '日記を削除', diary_path(@diary.id), method: :delete %>
 
 <p>----------------------------------------------</p>
 

@@ -1,6 +1,6 @@
 class Public::DiariesController < ApplicationController
   def index
-   @diaries = Diary.all
+   @diaries = Diary.where(user_id:current_user.id)
   end
 
   def new
@@ -35,8 +35,16 @@ class Public::DiariesController < ApplicationController
 
   def update
     @diary = Diary.find(params[:id])
+
+    if params[:diary][:image_ids]
+      params[:diary][:image_ids].each do |image_id|
+        image = @diary.images.find(image_id)
+        image.purge
+      end
+    end
     @diary.update(diary_params)
     redirect_to diary_path(@diary.id)
+
   end
 
   def destroy
@@ -49,9 +57,8 @@ class Public::DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:user_id, :diary_detail, :start_time, :is_favorited, image: [],
+    params.require(:diary).permit(:user_id, :diary_detail, :start_time, :is_favorited, images: [],
     image_emotions_attributes: [:id, :emotion_id, :_destroy],
-    images_attributes: [:id, :image, :_destroy]
     )
   end
 

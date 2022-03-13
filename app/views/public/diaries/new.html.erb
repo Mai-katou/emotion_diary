@@ -12,19 +12,9 @@
         form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } %>
     </div>
 
-    <%= f.file_field :image, accept: "image/*" %><br>
-    <p>---------------------------------------------------------------</p>
-    <div id="image-forms">
-        <%#= f.fields_for :images, accept: "image/*" do |image| %>
-            <%#= render partial: "image", locals: { image: image } %>
-        <%#end %>
-    </div>
-    <div>
-        <%#= link_to_add_association '写真追加', f, :images, partial: "image",
-        data: { association_insertion_node: '#image-forms',association_insertion_method: 'after'},
-        form_name: 'image', render_options: { locals: { image: image } } %>
-    </div>
-<p>---------------------------------------------------------------------------------</p>
+    <%= f.label :image, "画像（複数選択可能）" %>
+    <%= f.file_field :images, accept: "image/*", direct_upload: true ,multiple: true %><br>
+
     <%= f.text_area :diary_detail %><br>
     <%= f.radio_button :is_favorited, "true" %>
     <%= f.label :is_favorited, "お気に入りに登録する" %><br>

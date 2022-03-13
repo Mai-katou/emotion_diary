@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :user
   belongs_to :diary
 end
