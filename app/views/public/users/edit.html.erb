@@ -1,10 +1,14 @@
-<h1>ユーザー情報編集画面</h1>
-<%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
-
-<%= f.label :name , "ニックネーム" %>
-<%= f.text_field :name %><br>
-<%= f.label :email ,"メールアドレス" %>
-<%= f.text_field :email %><br>
-
-<%= f.submit "変更する" %>
-<% end %>
+<div class="container">
+<h2 class="mb-2">ユーザー情報編集</h2>
+  <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
+  <div class="diary_box mb-5 mt-5">
+    <p class="title"><i class="fa-solid fa-address-card"></i>ニックネーム</p>
+    <%= f.text_field :name %><br>
+  </div>
+  <div class="diary_box mb-5 mt-5">
+    <p class="title"><i class="fa-solid fa-envelope"></i>メールアドレス</p>
+    <%= f.text_field :email %><br>
+  </div>
+    <%= f.submit "変更する", class:"btn btn-outline-secondary" %>
+    <% end %>
+</div>

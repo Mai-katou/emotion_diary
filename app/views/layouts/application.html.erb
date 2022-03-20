@@ -6,49 +6,84 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/ab08715929.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-        <p>ようこそ<%= current_user.name %>さん</p>
-        </li>
-        <li>
-        <%= link_to "今日の記録", new_diary_path %>
-        </li>
-        <li>
-        <%= link_to "カレンダー", diaries_path %>
-        </li>
-        <li>
-        <%= link_to "お気に入り", favorited_diary_path %>
-        </li>
-        <li>
-        <%= link_to "使い方", about_path %>
-        </li>
-        <li>
-        <%= link_to "マイページ", user_path(current_user.id) %>
-        </li>
-        <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% end %>
-        <% if admin_signed_in? %>
-            <li>
-            <%= link_to "感情操作", admin_emotions_path %>
-            </li>
-            <li>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-            </li>
-        <% end %>
+  <body class="d-flex flex-column vh-100">
+
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <% if user_signed_in? %>
+              <div class="ml-4">ようこそ<%= current_user.name %>さん</div>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                  <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-feather-pointed"></i>
+                    <%= link_to "今日の記録", new_diary_path, class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <%= link_to "カレンダー", diaries_path, class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-star"></i>
+                    <%= link_to "お気に入り", favorited_diary_path, class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <%= link_to "使い方", about_path, class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-user"></i>
+                    <%= link_to "マイページ", user_path(current_user.id), class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item p-3">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-secondary" %>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            <% elsif admin_signed_in? %>
+              <div class="ml-4">管理者用ページにログイン中です</div>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                    <i class="fa-solid fa-toolbox"></i>
+                    <%= link_to "管理者メニュー画面へ", admin_homes_top_path,class:"text-secondary" %>
+                    </li>
+
+                    <li class="nav-item">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-secondary" %>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+      </nav>
     </header>
 
     <main>
     <%= yield %>
     </main>
-
   </body>
 </html>

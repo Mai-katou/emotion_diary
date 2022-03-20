@@ -36,7 +36,7 @@ class Public::DiariesController < ApplicationController
   def update
     @diary = Diary.find(params[:id])
 
-    if params[:diary][:image_ids]
+    if params[:diary][:image_ids].present?
       params[:diary][:image_ids].each do |image_id|
         image = @diary.images.find(image_id)
         image.purge
@@ -56,6 +56,13 @@ class Public::DiariesController < ApplicationController
   def favorited_diary
     @diaries = Diary.where(is_favorited:true,user_id:current_user.id)
   end
+
+  def favorited_off
+    diary = Diary.find(params[:id])
+    diary.update(diary_params)
+    redirect_to favorited_diary_path
+  end
+
 
   private
 

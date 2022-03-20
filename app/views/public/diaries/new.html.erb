@@ -1,26 +1,48 @@
-<h1>今日の日記</h1>
-<%= form_with model: @diary, url: diaries_path, method: :post, local:true do |f| %>
+<div class="container">
+    <h1 class="mb-2">今日の日記</h1>
+    <%= form_with model: @diary, url: diaries_path, method: :post, local:true do |f| %>
 
-    <div id="image-emotion-forms">
-        <%= f.fields_for :image_emotions do |image_emotion| %>
-          <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
-        <% end %>
+        <div class="diary_box mb-5 mt-5">
+            <p class="title"><i class="fa-solid fa-heart"></i>感情</p>
+            <div class="ml-5">
+                <div id="image-emotion-forms" >
+                    <%= f.fields_for :image_emotions do |image_emotion| %>
+                     <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
+                    <% end %>
+                </div>
+
+                <div><i class="fa-solid fa-circle-plus"></i>
+                    <%= link_to_add_association '感情追加', f, :image_emotions, partial: "emotion",
+                    data: { association_insertion_node: '#image-emotion-forms',association_insertion_method: 'after'},
+                    form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } ,class:"text-secondary"%>
+                </div>
+            </div>
+        </div>
+
+    <div class="diary_box mb-5 mt-5">
+       <p class="title"><i class="fa-solid fa-images"></i>画像(複数選択可能)</p>
+            <div class="ml-5">
+                <%= f.file_field :images, accept: "image/*", direct_upload: true ,multiple: true %><br>
+            </div>
     </div>
-    <div>
-        <%= link_to_add_association '感情追加', f, :image_emotions, partial: "emotion",
-        data: { association_insertion_node: '#image-emotion-forms',association_insertion_method: 'after'},
-        form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } %>
+
+    <div class="diary_box mb-5 mt-5">
+        <p class="title"><i class="fa-solid fa-book-open"></i>日記</p>
+            <div class="ml-5">
+                <%= f.text_area :diary_detail %><br>
+            </div>
     </div>
 
-    <%= f.label :image, "画像（複数選択可能）" %>
-    <%= f.file_field :images, accept: "image/*", direct_upload: true ,multiple: true %><br>
+  <div class="diary_box mb-4">
+        <p class="title"><i class="fa-solid fa-star"></i>お気に入り登録</p>
+            <div class="ml-5">
+                <%= f.radio_button :is_favorited, "true" %>
+                <%= f.label :is_favorited, "登録する" %><br>
+                <%= f.radio_button :is_favorited, "false" %>
+                <%= f.label :is_favorited, "登録しない" %><br>
+            </div>
+    </div>
 
-    <%= f.text_area :diary_detail %><br>
-    <%= f.radio_button :is_favorited, "true" %>
-    <%= f.label :is_favorited, "お気に入りに登録する" %><br>
-    <%= f.radio_button :is_favorited, "false" %>
-    <%= f.label :is_favorited, "お気に入りに登録しない" %><br>
-
-    <%= f.submit "保存する" %>
-<% end %>
-
+        <%= f.submit "保存する", class:"btn btn-outline-primary" %>
+    <% end %>
+</div>

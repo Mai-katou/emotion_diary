@@ -1,5 +1,9 @@
-<h1>感情新規登録</h1>
-<%= form_with model: @emotion, url: admin_emotions_path, method: :post, local:true do |f| %>
-<%= f.text_field :emotion_name %>
-<%= f.submit "感情登録" %>
-<% end %>
+<div class="container">
+  <h1 class="mb-2">感情新規登録</h1>
+    <%= form_with model: @emotion, url: admin_emotions_path, method: :post, local:true do |f| %>
+    <div class="diary_box mb-5 mt-5">
+      <%= f.text_field :emotion_name, class:"mb-3" %><br>
+      <%= f.submit "感情登録",class:"btn btn-outline-secondary" %>
+    </div>
+    <% end %>
+</div>

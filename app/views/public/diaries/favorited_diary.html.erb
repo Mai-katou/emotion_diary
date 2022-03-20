@@ -1,21 +1,47 @@
-<hi>favorited_diary</hi>
+<div class="container">
+    <h1 class="mb-4">お気に入り日記一覧</h1>
 
-<% @diaries.each do |diary| %>
-
-<p>感情</p>
-
-    <% diary.image_emotions.each do |emotion| %>
-      <%= emotion.emotion.emotion_name %>
-    <% end %>
-
-<p>日記</p>
-    <%= diary.diary_detail %>
-
-<p>画像</p>
-    <% diary.images.each do |image| %>
-        <%= image_tag image, size: "100x100" %>
-    <% end %>
-<% end %>
-
-    <%#= link_to '日記を編集', edit_diary_path(@diary.id) %>
-    <%#= link_to '日記を削除', diary_path(@diary.id), method: :delete %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><i class="fa-solid fa-calendar-days"></i>日付</th>
+                <th><i class="fa-solid fa-images"></i>画像</th>
+                <th><i class="fa-solid fa-heart"></i>感情</th>
+                <th><i class="fa-solid fa-book-open"></i>日記</th>
+                <th><i class="fa-solid fa-star"></i>お気に入り登録を解除する？<th>
+            </tr>
+        </thead>
+         <% @diaries.each do |diary| %>
+        <tbody>
+            <tr>
+                <td><%= link_to diary_path(diary.id) ,class:"text-secondary" do %>
+                    <%= diary.start_time.strftime('%Y/%m/%d') %>
+                    <% end %>
+                </td>
+                <td>
+                    <% if diary.images.present? %>
+                        <% diary.images.each do |image| %>
+                            <%= image_tag image, size: "70x70" %>
+                        <% end %>
+                    <% else %>
+                        <%= "No Image" %>
+                    <% end %>
+                </td>
+                <td>
+                    <% diary.image_emotions.each do |emotion| %>
+                    <%= emotion.emotion.emotion_name %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= diary.diary_detail %>
+                </td>
+                <td>
+                    <%= form_with model: diary, url: diary_favorited_off_path(diary.id) , method: :patch, local: true, id: diary.id do |f| %>
+                    <%= f.hidden_field :is_favorited, :value => "false" %>
+                    <%= f.submit "解除する" ,form: diary.id, class:"btn btn-outline-secondary" %>
+                    <% end %>
+                </td>
+            </tr>
+        </tbody>
+        <% end %>
+    </table>

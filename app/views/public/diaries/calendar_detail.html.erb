@@ -1,21 +1,38 @@
-<h1><%= @start_date %>の日記一覧</h1>
+<div class="container">
+    <h1><%= @start_date %>の日記一覧</h1>
 
-<% @diaries.each do |diary| %>
 
-<p>感情</p>
-<% diary.image_emotions.each do |emotion| %>
-  <%= emotion.emotion.emotion_name %>
-<% end %>
-
-<p>日記</p>
-<%= diary.diary_detail %>
-
-<p>画像</p>
-<% diary.images.each do |image| %>
-<%= image_tag image, size: "100x100" %>
-<% end %>
-
-<%= link_to '編集', edit_diary_path(diary.id) %>
-<%= link_to '削除', diary_path(diary.id), method: :delete %>
-
-<% end %>
+    <table class ="table">
+    <thead>
+      <tr class="table-secondary">
+        <th>感情</th>
+        <th>日記</th>
+        <th>画像</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @diaries.each do |diary| %>
+    <tbody>
+      <tr>
+        <td>
+          <% diary.image_emotions.each do |emotion| %>
+          <%= emotion.emotion.emotion_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= diary.diary_detail %>
+        </td>
+        <td>
+          <% diary.images.each do |image| %>
+          <%= image_tag image, size: "100x100" %>
+          <% end %>
+        </td>
+        <td>
+          <i class="fa-solid fa-book-open"></i>
+          <%= link_to "open", diary_path(diary.id), class:"text-secondary" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

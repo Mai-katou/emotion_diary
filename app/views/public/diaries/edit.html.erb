@@ -1,41 +1,57 @@
-<h1>日記編集画面</h1>
-<%= form_with model: @diary, url: diary_path(@diary.id), method: :patch, local:true do |f| %>
+<div class="container">
+    <h1 class="mb-2">日記編集画面</h1>
+    <%= form_with model: @diary, url: diary_path(@diary.id), method: :patch, local:true do |f| %>
 
-    <div id="image-emotion-forms">
-        <%= f.fields_for :image_emotions do |image_emotion| %>
-          <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
+    <div class="diary_box mb-5 mt-5">
+        <p class="title"><i class="fa-solid fa-heart"></i>感情</p>
+        <div class="ml-5">
+            <div id="image-emotion-forms">
+                <%= f.fields_for :image_emotions do |image_emotion| %>
+                  <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
+                <% end %>
+            </div>
+            <div><i class="fa-solid fa-circle-plus"></i>
+                <%= link_to_add_association '感情追加', f, :image_emotions, partial: "emotion",
+                data: { association_insertion_node: '#image-emotion-forms',association_insertion_method: 'after'},
+                form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } ,class:"text-secondary"%>
+            </div>
+        </div>
+     </div>
+
+     <div class="diary_box mb-5 mt-5">
+        <p class="title"><i class="fa-solid fa-book-open"></i>日記</p>
+            <div class="ml-5">
+            <%= f.text_area :diary_detail %><br>
+            </div>
+     </div>
+
+    <div class="diary_box mb-5 mt-5">
+        <p class="title"><i class="fa-solid fa-images"></i>画像</p>
+            <div class="ml-5">
+            <i class="fa-solid fa-circle-plus"></i>
+            <%= f.label :images, "画像追加" %><br>
+            <%= f.file_field :images, accept: "image/*", multiple: true %><br>
+            <% if @diary.images.present? %>
+                <p>削除したい画像にチェックを入れてください.更新ボタンを押すと削除されます</p>
+                <% @diary.images.each do |image| %>
+                <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+                <%= image_tag image, size: "100x100" %>
+                <% end %>
+            <% end %>
+            </div>
+    </div>
+
+    <div class="diary_box mb-4">
+        <p class="title"><i class="fa-solid fa-star"></i>お気に入り登録</p>
+            <div class="ml-5">
+            <%= f.radio_button :is_favorited, "true" %>
+            <%= f.label :is_favorited, "登録する" %><br>
+            <%= f.radio_button :is_favorited, "false" %>
+            <%= f.label :is_favorited, "登録しない" %><br>
+            </div>
+    </div>
+    <div class="button">
+        <%= f.submit "更新する", class:"btn btn-outline-secondary" %>
         <% end %>
     </div>
-
-    <div>
-        <%= link_to_add_association '感情追加', f, :image_emotions, partial: "emotion",
-        data: { association_insertion_node: '#image-emotion-forms',association_insertion_method: 'after'},
-        form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } %>
-    </div>
-
-    <div>
-    <%= f.label :diary_detail,"日記" %>
-    <%= f.text_area :diary_detail %><br>
-    </div>
-
-    <div>
-    <%= f.label :images, "画像追加" %><br>
-    <%= f.file_field :images, accept: "image/*", multiple: true %><br>
-    <% if @diary.images.present? %>
-        <p>削除したい画像にチェックを入れてください.更新ボタンを押すと削除されます</p>
-        <% @diary.images.each do |image| %>
-        <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
-        <%= image_tag image, size: "100x100" %>
-        <% end %>
-    <% end %>
-    </div>
-    <div>
-    <%= f.radio_button :is_favorited, "true" %>
-    <%= f.label :is_favorited, "お気に入りに登録する" %><br>
-    <%= f.radio_button :is_favorited, "false" %>
-    <%= f.label :is_favorited, "お気に入りに登録しない" %><br>
-    </div>
-
-    <%= f.submit "更新する" %>
-<% end %>
-
+</div>

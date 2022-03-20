@@ -1,5 +1,9 @@
-<h1>感情編集画面</h1>
-<%= form_with model: @emotion, url: admin_emotion_path(@emotion.id), method: :patch, local:true do |f| %>
-<%= f.text_field :emotion_name %>
-<%= f.submit "更新する" %>
-<% end %>
+<div class="container">
+  <h1 class="mb-2">感情編集</h1>
+  <%= form_with model: @emotion, url: admin_emotion_path(@emotion.id), method: :patch, local:true do |f| %>
+    <div class="diary_box mb-5 mt-5">
+      <%= f.text_field :emotion_name, class:"mb-3" %><br>
+      <%= f.submit "更新する" ,class:"btn btn-outline-secondary"%>
+    </div>
+  <% end %>
+</div>

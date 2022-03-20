@@ -19,3 +19,13 @@
   padding:0;
   box-sizing:border-box;
 }
+
+.title{
+  font-size:20px;
+}
+
+.btn-custom{
+  background-color:white;
+  border:1px solid pink;
+  font-color:pink;
+}
