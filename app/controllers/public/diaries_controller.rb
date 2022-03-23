@@ -1,6 +1,6 @@
 class Public::DiariesController < ApplicationController
   def index
-   @diaries = Diary.where(user_id:current_user.id)
+    @diaries = Diary.where(user_id: current_user.id)
   end
 
   def new
@@ -20,7 +20,7 @@ class Public::DiariesController < ApplicationController
 
   def show
     @diary = Diary.find(params[:id])
-    @diaries = Diary.where(start_time: @diary.start_time.strftime("%Y/%m/%d 00:00:00") ... @diary.start_time.strftime("%Y/%m/%d 23:59:59")).where.not(id: @diary.id)
+    @diaries = Diary.where(start_time: @diary.start_time.strftime("%Y/%m/%d 00:00:00")...@diary.start_time.strftime("%Y/%m/%d 23:59:59")).where.not(id: @diary.id)
   end
 
   def edit
@@ -30,7 +30,7 @@ class Public::DiariesController < ApplicationController
 
   def calendar_detail
     @start_date = "#{params[:year]}/#{params[:month]}/#{params[:day]}"
-    @diaries = Diary.where(start_time:("#{@start_date} 00:00:00" ... "#{@start_date} 23:59:59"))
+    @diaries = Diary.where(start_time: ("#{@start_date} 00:00:00"..."#{@start_date} 23:59:59"))
   end
 
   def update
@@ -44,17 +44,19 @@ class Public::DiariesController < ApplicationController
     end
     @diary.update(diary_params)
     redirect_to diary_path(@diary.id)
-
   end
 
   def destroy
     @diary = Diary.find(params[:id])
+    year = @diary.start_time.strftime("%Y")
+    month = @diary.start_time.strftime("%m")
+    day = @diary.start_time.strftime("%d")
     @diary.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to calendar_detail_path(year, month, day)
   end
 
   def favorited_diary
-    @diaries = Diary.where(is_favorited:true,user_id:current_user.id)
+    @diaries = Diary.where(is_favorited: true, user_id: current_user.id)
   end
 
   def favorited_off
@@ -63,13 +65,10 @@ class Public::DiariesController < ApplicationController
     redirect_to favorited_diary_path
   end
 
-
   private
 
   def diary_params
     params.require(:diary).permit(:user_id, :diary_detail, :start_time, :is_favorited, images: [],
-    image_emotions_attributes: [:id, :emotion_id, :_destroy],
-    )
+                                                                                       image_emotions_attributes: [:id, :emotion_id, :_destroy],)
   end
-
 end

@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mb-2">日記詳細</h1>
     <p class="diary_box mb-5 title">
-     　 <%=@diary.start_time.strftime('%Y/%m/%d') %>
+     　 <%= @diary.start_time.strftime('%Y/%m/%d') %>
     </p>
 
     <div class="diary_box mb-5 mt-5">
@@ -30,6 +30,17 @@
         <p class="title"><i class="fa-solid fa-book-open"></i>日記</p>
             <div class="ml-5">
             <%= @diary.diary_detail %>
+            </div>
+    </div>
+
+    <div class="diary_box mb-5 mt-5">
+        <p class="title"><i class="fa-solid fa-star"></i>お気に入り登録</p>
+            <div class="ml-5">
+                <% if @diary.is_favorited = true %>
+                    <p>登録済み</p>
+                <% else %>
+                    <p>未登録</p>
+                <% end %>
             </div>
     </div>
 

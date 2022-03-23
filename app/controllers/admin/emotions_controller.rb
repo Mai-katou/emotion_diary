@@ -34,5 +34,4 @@ class Admin::EmotionsController < ApplicationController
   def emotion_params
     params.require(:emotion).permit(:emotion_name)
   end
-
 end
