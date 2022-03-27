@@ -28,32 +28,32 @@
                   <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-feather-pointed"></i>
+                    <i class="fa-solid fa-feather-pointed"></i>
                     <%= link_to "今日の記録", new_diary_path, class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-calendar-days"></i>
+                    <i class="fa-solid fa-calendar-days"></i>
                     <%= link_to "カレンダー", diaries_path, class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
                     <%= link_to "お気に入り", favorited_diary_path, class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-circle-question"></i>
+                    <i class="fa-solid fa-circle-question"></i>
                     <%= link_to "使い方", about_path, class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-user"></i>
+                    <i class="fa-solid fa-user"></i>
                     <%= link_to "マイページ", user_path(current_user.id), class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item p-3">
-                    <i class="fas fa-right-from-bracket"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-secondary" %>
                     </li>
 
@@ -66,12 +66,12 @@
                   <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                    <i class="fas fa-toolbox"></i>
+                    <i class="fa-solid fa-toolbox"></i>
                     <%= link_to "管理者メニュー画面へ", admin_homes_top_path,class:"text-secondary" %>
                     </li>
 
                     <li class="nav-item">
-                    <i class="fas fa-right-from-bracket"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-secondary" %>
                     </li>
 
