@@ -3,14 +3,14 @@
     <%= form_with model: @diary, url: diary_path(@diary.id), method: :patch, local:true do |f| %>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-heart"></i>感情</p>
+        <p class="title"><i class="fas fa-heart"></i>感情</p>
         <div class="ml-5">
             <div id="image-emotion-forms">
                 <%= f.fields_for :image_emotions do |image_emotion| %>
                   <%= render partial: "emotion", locals: { image_emotion: image_emotion, emotions: @emotions } %>
                 <% end %>
             </div>
-            <div><i class="fa-solid fa-circle-plus"></i>
+            <div><i class="fas fa-plus-circle"></i>
                 <%= link_to_add_association '感情追加', f, :image_emotions, partial: "emotion",
                 data: { association_insertion_node: '#image-emotion-forms',association_insertion_method: 'after'},
                 form_name: 'image_emotion', render_options: { locals: {emotions: @emotions } } ,class:"text-secondary"%>
@@ -19,16 +19,16 @@
      </div>
 
      <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-book-open"></i>日記</p>
+        <p class="title"><i class="fas fa-book-open"></i>日記</p>
             <div class="ml-5">
             <%= f.text_area :diary_detail %><br>
             </div>
      </div>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-images"></i>画像</p>
+        <p class="title"><i class="fas fa-images"></i>画像</p>
             <div class="ml-5">
-            <i class="fa-solid fa-circle-plus"></i>
+            <i class="fas fa-plus-circle"></i>
             <%= f.label :images, "画像追加" %><br>
             <%= f.file_field :images, accept: "image/*", multiple: true %><br>
             <% if @diary.images.present? %>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="diary_box mb-4">
-        <p class="title"><i class="fa-solid fa-star"></i>お気に入り登録</p>
+        <p class="title"><i class="fas fa-star"></i>お気に入り登録</p>
             <div class="ml-5">
             <%= f.radio_button :is_favorited, "true" %>
             <%= f.label :is_favorited, "登録する" %><br>

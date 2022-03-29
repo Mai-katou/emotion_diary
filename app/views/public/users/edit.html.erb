@@ -2,11 +2,11 @@
 <h2 class="mb-2">ユーザー情報編集</h2>
   <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
   <div class="diary_box mb-5 mt-5">
-    <p class="title"><i class="fa-solid fa-address-card"></i>ニックネーム</p>
+    <p class="title"><i class="fas fa-address-card"></i>ニックネーム</p>
     <%= f.text_field :name %><br>
   </div>
   <div class="diary_box mb-5 mt-5">
-    <p class="title"><i class="fa-solid fa-envelope"></i>メールアドレス</p>
+    <p class="title"><i class="fas fa-envelope"></i>メールアドレス</p>
     <%= f.text_field :email %><br>
   </div>
     <%= f.submit "変更する", class:"btn btn-outline-secondary" %>

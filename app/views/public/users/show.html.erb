@@ -2,16 +2,16 @@
   <h2 class="mb-2">マイページ</h2>
 
   <div class="diary_box mb-5 mt-5">
-    <p class="title"><i class="fa-solid fa-address-card"></i>ニックネーム</p>
+    <p class="title"><i class="fas fa-address-card"></i>ニックネーム</p>
     <%= @user.name %>
   </div>
 
   <div class="diary_box mb-5 mt-5">
-    <p class="title"><i class="fa-solid fa-envelope"></i>メールアドレス</p>
+    <p class="title"><i class="fas fa-envelope"></i>メールアドレス</p>
     <%= @user.email %>
   </div>
 
-  <p><i class="fa-solid fa-user-pen"></i></i>
+  <p><i class="fas fa-pen-square"></i>
       <%= link_to "編集", edit_user_path(@user.id), class:"text-secondary" %></p>
 </div>
 

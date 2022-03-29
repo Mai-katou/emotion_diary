@@ -1,13 +1,13 @@
 <div class="container">
 <h1>カレンダー</h1>
-<i class="fa-solid fa-feather-pointed"></i>
+<i class="fas fa-feather"></i>
 <%= link_to "今日の記録" , new_diary_path, class:"text-secondary" %>
     <div class = 'calendar'>
       <%= month_calendar events: @diaries do |date, diaries| %>
        　<%= date.day %>
        　<% if diaries.present? %>
            　<div>
-           　<i class="fa-solid fa-feather-pointed"></i>
+           　<i class="fas fa-feather"></i>
            　</div>
              <div>
               <%= link_to "#{diaries.size}件", calendar_detail_path(date.year,date.month,date.day) %>

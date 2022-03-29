@@ -5,7 +5,7 @@
     </p>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-images"></i>画像</p>
+        <p class="title"><i class="fas fa-images"></i>画像</p>
             <div class="ml-5">
             <% if @diary.images.present? %>
                 <% @diary.images.each do |image| %>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-heart"></i>感情</p>
+        <p class="title"><i class="fas fa-heart"></i>感情</p>
             <div class="ml-5">
             <% @diary.image_emotions.each do |emotion| %>
               <%= emotion.emotion.emotion_name %>
@@ -27,14 +27,14 @@
     </div>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-book-open"></i>日記</p>
+        <p class="title"><i class="fas fa-book-open"></i>日記</p>
             <div class="ml-5">
             <%= @diary.diary_detail %>
             </div>
     </div>
 
     <div class="diary_box mb-5 mt-5">
-        <p class="title"><i class="fa-solid fa-star"></i>お気に入り登録</p>
+        <p class="title"><i class="fas fa-star"></i>お気に入り登録</p>
             <div class="ml-5">
                 <% if @diary.is_favorited = true %>
                     <p>登録済み</p>
@@ -44,8 +44,8 @@
             </div>
     </div>
 
-        <p><i class="fa-solid fa-pen-to-square"></i>
+        <p><i class="fas fa-pen-square"></i>
             <%= link_to '編集', edit_diary_path(@diary.id), class:"text-secondary" %></p>
-        <p><i class="fa-solid fa-eraser"></i>
+        <p><i class="fas fa-eraser"></i>
             <%= link_to '削除', diary_path(@diary.id), method: :delete, class:"text-secondary", "data-confirm" =>"本当に削除しますか？" %></p>
 </div>
