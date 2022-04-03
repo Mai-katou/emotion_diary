@@ -36,10 +36,10 @@
     <div class="diary_box mb-5 mt-5">
         <p class="title"><i class="fas fa-star"></i>お気に入り登録</p>
             <div class="ml-5">
-                <% if @diary.is_favorited = true %>
-                    <p>登録済み</p>
+                <% if @diary.is_favorited == true %>
+                    <%= "登録済み" %>
                 <% else %>
-                    <p>未登録</p>
+                    <%= "未登録" %>
                 <% end %>
             </div>
     </div>
