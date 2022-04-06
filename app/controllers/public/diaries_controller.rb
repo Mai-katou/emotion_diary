@@ -1,4 +1,5 @@
 class Public::DiariesController < ApplicationController
+  
   def index
     @diaries = Diary.where(user_id: current_user.id)
   end
@@ -30,20 +31,25 @@ class Public::DiariesController < ApplicationController
 
   def calendar_detail
     @start_date = "#{params[:year]}/#{params[:month]}/#{params[:day]}"
-    @diaries = Diary.where(start_time: ("#{@start_date} 00:00:00"..."#{@start_date} 23:59:59"))
+    @diaries = Diary.where(start_time: ("#{@start_date} 00:00:00"..."#{@start_date} 23:59:59"),user_id: current_user.id)
+
   end
 
   def update
     @diary = Diary.find(params[:id])
 
-    if params[:diary][:image_ids].present?
-      params[:diary][:image_ids].each do |image_id|
-        image = @diary.images.find(image_id)
-        image.purge
+    if @diary.user_id == current_user.id
+      if params[:diary][:image_ids].present?
+        params[:diary][:image_ids].each do |image_id|
+          image = @diary.images.find(image_id)
+          image.purge
+        end
       end
+     @diary.update(diary_params)
+    else
+     redirect_to diary_path(@diary.id)
     end
-    @diary.update(diary_params)
-    redirect_to diary_path(@diary.id)
+
   end
 
   def destroy

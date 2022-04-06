@@ -1,4 +1,6 @@
 class Admin::EmotionsController < ApplicationController
+  
+  
   def new
     @emotion = Emotion.new
   end
