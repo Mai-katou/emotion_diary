@@ -1,6 +1,6 @@
 class Admin::EmotionsController < ApplicationController
-  
-  
+  before_action :authenticate_admin!
+
   def new
     @emotion = Emotion.new
   end
