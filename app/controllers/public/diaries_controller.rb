@@ -30,7 +30,11 @@ class Public::DiariesController < ApplicationController
 
   def edit
     @diary = Diary.find(params[:id])
-    @emotions = Emotion.all
+    if @diary.user_id == current_user.id
+      @emotions = Emotion.all
+    else
+      redirect_to root_path
+    end
   end
 
   def calendar_detail
@@ -41,28 +45,31 @@ class Public::DiariesController < ApplicationController
 
   def update
     @diary = Diary.find(params[:id])
-
-    if @diary.user_id == current_user.id
-      if params[:diary][:image_ids].present?
-        params[:diary][:image_ids].each do |image_id|
-          image = @diary.images.find(image_id)
-          image.purge
+     if @diary.user_id == current_user.id
+        if params[:diary][:image_ids].present?
+          params[:diary][:image_ids].each do |image_id|
+            image = @diary.images.find(image_id)
+            image.purge
+          end
         end
-      end
-     @diary.update(diary_params)
-    else
-     redirect_to diary_path(@diary.id)
-    end
-
+       @diary.update(diary_params)
+       redirect_to diary_path(@diary.id)
+     else
+       redirect_to root_path
+     end
   end
 
   def destroy
     @diary = Diary.find(params[:id])
-    year = @diary.start_time.strftime("%Y")
-    month = @diary.start_time.strftime("%m")
-    day = @diary.start_time.strftime("%d")
-    @diary.destroy
-    redirect_to calendar_detail_path(year, month, day)
+      if @diary.user_id == current_user.id
+        year = @diary.start_time.strftime("%Y")
+        month = @diary.start_time.strftime("%m")
+        day = @diary.start_time.strftime("%d")
+        @diary.destroy
+        redirect_to calendar_detail_path(year, month, day)
+      else
+        redirect_to root_path
+      end
   end
 
   def favorited_diary
