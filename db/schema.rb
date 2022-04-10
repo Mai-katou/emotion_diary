@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_08_065440) do
+ActiveRecord::Schema.define(version: 2022_04_10_054934) do
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_065440) do
   end
 
   create_table "diaries", force: :cascade do |t|
-    t.string "user_id", null: false
+    t.integer "user_id", null: false
     t.text "diary_detail"
     t.datetime "start_time", null: false
     t.boolean "is_favorited", default: false, null: false
