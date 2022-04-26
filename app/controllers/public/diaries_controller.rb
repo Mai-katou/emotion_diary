@@ -22,9 +22,7 @@ class Public::DiariesController < ApplicationController
 
   def show
     @diary = Diary.find(params[:id])
-    if @diary.user_id == current_user.id
-       @diaries = Diary.where(start_time: @diary.start_time.strftime("%Y/%m/%d 00:00:00")...@diary.start_time.strftime("%Y/%m/%d 23:59:59")).where.not(id: @diary.id)
-    else
+    if @diary.user_id != current_user.id
       redirect_to root_path
     end
   end
