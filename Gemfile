@@ -60,6 +60,7 @@ gem 'devise'
 gem 'pry-byebug', group: :development
 gem "cocoon"
 gem 'dotenv-rails'
+
 group :production do
   gem 'mysql2'
 end
