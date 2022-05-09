@@ -1,7 +1,7 @@
 <div class="container">
 <h1>カレンダー</h1>
 <i class="fas fa-feather"></i>
-<%= link_to "今日の記録" , new_diary_path, class:"text-secondary" %>
+<%= link_to "今日の記録はここをクリック" , new_diary_path, class:"text-secondary" %>
     <div class = 'calendar'>
       <%= month_calendar events: @diaries do |date, diaries| %>
        　<%= date.day %>
